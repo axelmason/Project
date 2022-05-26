@@ -6,6 +6,15 @@
     <div class="container">
         <div class="d-flex flex-column align-items-center">
             <h1 class="my-5">Авторизация</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('auth.login') }}" method="post" class="d-flex flex-column col-4">
                 @csrf
                 @error('login')
