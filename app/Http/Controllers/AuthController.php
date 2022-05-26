@@ -17,8 +17,11 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $r)
     {
-        AuthService::register($r);
-        return to_route('index')->with('success', 'Добро пожаловать!');
+        $create = AuthService::register($r);
+        if($create) {
+            return to_route('index')->with('success', 'Добро пожаловать!');
+        }
+        return to_route('index')->withErrors(['register', 'Ошибка регистрации.']);
     }
 
     public function loginPage()

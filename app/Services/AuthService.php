@@ -16,6 +16,7 @@ class AuthService
         if($create) {
             return Auth::attempt($validate);
         }
+        return false;
     }
 
     public static function login(Request $r) : bool
