@@ -20,7 +20,7 @@
                         id="seat_number-{{ $seat->seat_number }}" class="btn-check" autocomplete="off"
                         @if ($seat->user_id !== null) disabled @endif data-id="{{ $seat->seat_number }}">
                     <label for="seat_number-{{ $seat->seat_number }}"
-                        class="btn @if(auth()->user()->id == $seat->user_id) btn-success @else btn-outline-dark @endif me-2 fs-5">{{ $seat->seat_number }}</label>
+                        class="btn @if(auth()->check()) @if(auth()->user()->id == $seat->user_id) btn-success @else btn-outline-dark @endif @endif me-2 fs-5">{{ $seat->seat_number }}</label>
                 @endforeach
             </div>
             <button type="submit" class="booking-btn btn btn-outline-success my-2"

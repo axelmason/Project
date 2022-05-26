@@ -17,7 +17,7 @@
                 </ul>
             </div>
         @endif
-        
+
         @if ($cars->count() > 0)
             <div class="table-responsive">
                 <table class="table table-bordered" style="vertical-align: middle; font-size: 18px;">
@@ -27,7 +27,9 @@
                         <th scope="col">Количество мест (всего)</th>
                         <th scope="col">Количество мест (свободных)</th>
                         <th scope="col">Дата и время поездки</th>
-                        <th scope="col"></th>
+                        @if (auth()->check())
+                            <th scope="col"></th>
+                        @endif
                     </thead>
                     <tbody>
                         @foreach ($cars as $car)
@@ -40,8 +42,10 @@
                                     {{ \Carbon\Carbon::parse($car->booking_date)->format('d.m.Y') }}
                                     {{ \Carbon\Carbon::parse($car->booking_time)->format('H:i') }}
                                 </td>
-                                <td class="text-center"><a href="{{ route('detail', $car->id) }}"
-                                        class="btn btn-info">Подробнее</a></td>
+                                @if (auth()->check())
+                                    <td class="text-center"><a href="{{ route('detail', $car->id) }}"
+                                            class="btn btn-info">Подробнее</a></td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
