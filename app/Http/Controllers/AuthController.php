@@ -21,7 +21,7 @@ class AuthController extends Controller
         if($create) {
             return to_route('index')->with('success', 'Добро пожаловать!');
         }
-        return to_route('index')->withErrors(['register', 'Ошибка регистрации.']);
+        return to_route('index')->withErrors(['register' => 'Ошибка регистрации.']);
     }
 
     public function loginPage()
