@@ -30,7 +30,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $car->name }}</td>
                             <td>{{ $car->seats->count() }}</td>
-                            <td>{{ App\Services\CarService::free_seats($car) }}</td>
+                            <td>{{ App\Services\CarService::freeSeats($car) }}</td>
                             <td>
                                 {{ \Carbon\Carbon::parse($car->booking_date)->format('d.m.Y') }}
                                 {{ \Carbon\Carbon::parse($car->booking_time)->format('H:i') }}

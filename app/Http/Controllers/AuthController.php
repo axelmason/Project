@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
@@ -14,9 +15,10 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $r)
+    public function register(RegisterRequest $r)
     {
         AuthService::register($r);
+        return to_route('index')->with('success', 'Добро пожаловать!');
     }
 
     public function loginPage()
@@ -26,7 +28,11 @@ class AuthController extends Controller
 
     public function login(Request $r)
     {
-        AuthService::login($r);
+        $auth = AuthService::login($r);
+        if($auth) {
+            return to_route('index')->with('success', 'Добро пожаловать!');
+        }
+        return redirect()->back()->withErrors(['error' => 'Логин или пароль не совпадает!']);
     }
 
     public function logout()

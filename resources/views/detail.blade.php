@@ -7,7 +7,7 @@
         <h2 class="text-center my-5">Информация об автомобиле {{ $car->name }}</h2>
         <p>{{ $car->name }}</p>
         <p>Количество свободных мест:
-            {{ App\Services\CarService::free_seats($car) }} из {{ $car->seats->count() }}
+            {{ App\Services\CarService::freeSeats($car) }} из {{ $car->seats->count() }}
         </p>
         <p class="d-flex">Дата и время поездки:
             {{ \Carbon\Carbon::parse($car->booking_date)->format('d.m.Y') }}

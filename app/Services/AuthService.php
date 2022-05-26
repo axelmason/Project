@@ -5,41 +5,21 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
 
 class AuthService
 {
-    public static function register(Request $r)
+    public static function register(RegisterRequest $r) : bool
     {
-        $validate = $r->validate([
-            'email' => 'required|email|unique:users',
-            'login' => 'required|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ], [
-            'email.required' => 'Введите Email.',
-            'login.required' => 'Введите логин.',
-            'password.required' => 'Введите пароль.',
-            'password.min' => 'Минимальная длина пароля 6 символов.',
-            'password.confirmed' => 'Пароли не совпадают.',
-            'email.unique' => 'Пользователь с такой почтой уже зарегистрирован.',
-            'login.unique' => 'Пользователь с таким логином уже зарегистрирован.',
-        ]);
-
-        if($validate) {
-            $create = User::create($validate);
-            if($create) {
-                $auth = Auth::attempt($validate);
-                if($auth) {
-                    return to_route('index')->with('success', 'Добро пожаловать!');
-                }
-            }
+        $validate = $r->validated();
+        $create = User::create($validate);
+        if($create) {
+            return Auth::attempt($validate);
         }
     }
 
-    public static function login(Request $r)
+    public static function login(Request $r) : bool
     {
-        $auth = Auth::attempt(['login' => $r->login, 'password' => $r->password]);
-        if($auth) {
-            return to_route('index')->with('success', 'Добро пожаловать!');
-        }
+        return Auth::attempt(['login' => $r->login, 'password' => $r->password]);
     }
 }

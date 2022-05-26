@@ -46,7 +46,7 @@ class CarService
         return $car;
     }
 
-    public static function free_seats(Car $car) : int
+    public static function freeSeats(Car $car) : int
     {
         $i = 0;
         foreach ($car->seats as $seat) {
