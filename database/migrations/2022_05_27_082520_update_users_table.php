@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cars', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255)->default('Автомобиль');
-            $table->date('booking_date')->nullable();
-            $table->time('booking_time')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
+        Schema::table('users', function(Blueprint $table) {
+            $table->integer('balance')->unsigned()->default(0);
         });
     }
 
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        //
     }
 };

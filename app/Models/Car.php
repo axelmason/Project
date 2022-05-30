@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Car extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'cars';
-    protected $fillable = ['name', 'booking_time', 'booking_date'];
+    protected $fillable = ['name', 'booking_time', 'booking_date', 'seat_price'];
     protected $dates = ['deleted_at'];
 
     public function seats()
     {
         return $this->hasMany(Seat::class);
     }
+
 }

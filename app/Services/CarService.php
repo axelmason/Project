@@ -11,7 +11,7 @@ class CarService
 {
     public static function create(Request $r)
     {
-        $car = Car::create(['name' => $r->name, 'booking_time' => $r->time, 'booking_date' => $r->date]);
+        $car = Car::create(['name' => $r->name, 'booking_time' => $r->time, 'booking_date' => $r->date, 'seat_price' => $r->seat_price]);
         foreach(range(1, $r->seats) as $i) {
             Seat::create(['car_id' => $car->id, 'seat_number' => $i]);
         }

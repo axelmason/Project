@@ -10,8 +10,18 @@
                 @csrf
                 <label for="name">Название автомобиля</label>
                 <input type="text" name="name" placeholder="Название автомобиля" class="form-control my-2" value="{{ $car->name }}">
-                <label for="seats">Количество мест</label>
-                <input type="number" name="seats" placeholder="Количество мест" min="1" max="15" class="form-control my-2" disabled value="{{ $car->seats->count() }}">
+                <div class="form-group my-2 row">
+                    <div class="col-6">
+                        <input type="number" name="seats" placeholder="Количество мест" min="1" max="15"
+                            class="form-control" value="{{ $car->seats->count() }}" disabled>
+                        <div class="form-text">Нельзя изменить.</div>
+                    </div>
+                    <div class="col-6">
+                        <input type="number" name="seat_price" placeholder="Цена за место"
+                            class="form-control" value="{{ $car->seat_price }}">
+                        <div class="form-text">У всех одинаковое.</div>
+                    </div>
+                </div>
                 <div class="form-group my-2 row">
                     <div class="col-6">
                         <label for="date">Дата поездки</label>

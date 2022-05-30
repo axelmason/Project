@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('login')->unique();
             $table->string('password');
+            $table->int('balance')->default(0);
             $table->timestamps();
         });
     }

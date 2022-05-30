@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Booking;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -18,7 +19,9 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/detail/{car_id}', [HomeController::class, 'detail'])->name('detail');
+
 Route::post('/booking', [HomeController::class, 'booking'])->name('booking');
+Route::get('/booking', [HomeController::class, 'bookingGet'])->name('bookingGet');
 
 Route::middleware('notauth')->name('auth.')->group(function() {
     Route::get('/register', [AuthController::class, 'registerPage'])->name('registerPage');
@@ -29,6 +32,8 @@ Route::middleware('notauth')->name('auth.')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
+    Route::get('/balance', [HomeController::class, 'balancePage'])->name('balancePage');
+    Route::post('/balance', [HomeController::class, 'addBalance'])->name('addBalance');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

@@ -19,6 +19,6 @@ class Seat extends Model
 
     public function car()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Car::class);
     }
 }

@@ -22,6 +22,7 @@
                     <th scope="col">Количество мест (всего)</th>
                     <th scope="col">Количество мест (свободных)</th>
                     <th scope="col">Дата и время поездки</th>
+                    <th scope="col">Цена за место</th>
                     <th scope="col"></th>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@
                                 {{ \Carbon\Carbon::parse($car->booking_date)->format('d.m.Y') }}
                                 {{ \Carbon\Carbon::parse($car->booking_time)->format('H:i') }}
                             </td>
+                            <td>{{ $car->seat_price }} руб.</td>
                             <td class="text-center"><a href="{{ route('admin.restoreCar', $car->id) }}"
                                     class="btn btn-info">Восстановить</a></td>
                         </tr>
