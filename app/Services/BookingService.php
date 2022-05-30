@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingService
 {
+    /**
+     * Create a new redirect response to a named route.
+     *
+     * @param  Request $r
+     * @return JSON
+     */
     public static function booking(Request $r) : object
     {
         $seats = Seat::where('car_id', $r->car_id)->get();
